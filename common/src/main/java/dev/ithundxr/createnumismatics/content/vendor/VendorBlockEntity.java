@@ -115,6 +115,10 @@ public class VendorBlockEntity extends SmartBlockEntity implements Trusted, Trus
         return this.inventory.getDiscrete(coin);
     }
 
+    public DiscreteCoinBag getCoinBag() {
+        return inventory;
+    }
+
     public @Nullable UUID getCardId() {
         ItemStack card = cardContainer.getItem(0);
         if (!(card.getItem() instanceof CardItem))

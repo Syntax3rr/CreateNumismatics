@@ -37,6 +37,9 @@ dependencies {
     // required for proper remapping and compiling
     modCompileOnly("net.fabricmc.fabric-api:fabric-api:${"fabric_api_version"()}")
 
+    // CC: Tweaked
+    compileOnly("cc.tweaked:cc-tweaked-${"cc_mc_version"()}-forge-api:${"cc_version"()}")
+
     // Carry On
     //modCompileOnly("tschipp.carryon:carryon-fabric-${"minecraft_version"()}:${"carryon_fabric_version"()}")
     modCompileOnly("tschipp.carryon:carryon-neoforge-${"minecraft_version"()}:${"carryon_neoforge_version"()}")

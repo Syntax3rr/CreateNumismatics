@@ -12,6 +12,7 @@ import java.util.function.Supplier;
  */
 public enum Mods {
 	CARRYON("carryon"),
+	COMPUTERCRAFT("computercraft"),
 	SODIUM("sodium")
 	;
 

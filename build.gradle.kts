@@ -298,6 +298,7 @@ fun Project.setupRepositories() {
         exclusiveMaven("https://maven.parchmentmc.org", "org.parchmentmc.data") // Parchment mappings
         exclusiveMaven("https://mvn.devos.one/releases", "io.github.fabricators_of_create.Porting-Lib") // Porting Lib Releases
         exclusiveMaven("https://maven.ithundxr.dev/snapshots", "com.tterrag.registrate") // Registrate
+        exclusiveMaven("https://squiddev.cc/maven/", "cc.tweaked") // CC: Tweaked
         exclusiveMaven("https://maven.blamejared.com", "tschipp.carryon") // Carry On
         exclusiveMaven("https://maven.terraformersmc.com/releases", "dev.emi", "com.terraformersmc") // EMI, Mod Menu
         exclusiveMaven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven", "fuzs.forgeconfigapiport") // Forge config api port

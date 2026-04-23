@@ -61,6 +61,12 @@ dependencies {
 
     modLocalRuntime("dev.emi:emi-neoforge:${"emi_version"()}")
 
+    // CC: Tweaked
+    modCompileOnly("cc.tweaked:cc-tweaked-${"cc_mc_version"()}-forge-api:${"cc_version"()}")
+    if ("enable_cc"().toBoolean()) {
+        modLocalRuntime("cc.tweaked:cc-tweaked-${"cc_mc_version"()}-forge:${"cc_version"()}")
+    }
+
     // Carry On
     modCompileOnly("tschipp.carryon:carryon-neoforge-${"minecraft_version"()}:${"carryon_neoforge_version"()}")
     if ("enable_carryon"().toBoolean()) {

@@ -2,6 +2,8 @@ package dev.ithundxr.createnumismatics.neoforge;
 
 import com.mojang.brigadier.CommandDispatcher;
 import dev.ithundxr.createnumismatics.Numismatics;
+import dev.ithundxr.createnumismatics.compat.Mods;
+import dev.ithundxr.createnumismatics.compat.computercraft.neoforge.NumismaticsComputerCraftCompat;
 import dev.ithundxr.createnumismatics.registry.NumismaticsAdvancements;
 import dev.ithundxr.createnumismatics.registry.NumismaticsTriggers;
 import dev.ithundxr.createnumismatics.registry.commands.arguments.EnumArgument;
@@ -44,6 +46,9 @@ public class NumismaticsImpl {
         modEventBus.addListener(NumismaticsImpl::onRegisterEvent);
         modEventBus.addListener(EventPriority.HIGHEST, NumismaticsDataNeoForge::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, NumismaticsDataNeoForge::gatherData);
+
+        Mods.COMPUTERCRAFT.executeIfInstalled(() -> () ->
+            modEventBus.addListener(NumismaticsComputerCraftCompat::registerCapabilities));
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
