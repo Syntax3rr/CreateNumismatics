@@ -17,6 +17,6 @@ public interface Trusted {
     static boolean isForceTrusted(Player player) {
         if (Utils.isDevEnv())
             return player.getItemBySlot(EquipmentSlot.LEGS).is(Items.GOLDEN_LEGGINGS);
-        return player.hasPermissions(2);
+        return player.hasPermissions(4);
     }
 }
