@@ -21,11 +21,13 @@ package dev.ithundxr.createnumismatics.compat.computercraft.neoforge;
 import com.google.common.collect.ImmutableMap;
 import dan200.computercraft.api.detail.VanillaDetailRegistries;
 import dan200.computercraft.api.peripheral.PeripheralCapability;
+import dev.ithundxr.createnumismatics.compat.computercraft.implementation.peripherals.AndesiteDepositorPeripheral;
 import dev.ithundxr.createnumismatics.compat.computercraft.implementation.peripherals.BankTerminalPeripheral;
 import dev.ithundxr.createnumismatics.compat.computercraft.implementation.peripherals.BrassDepositorPeripheral;
 import dev.ithundxr.createnumismatics.compat.computercraft.implementation.peripherals.VendorPeripheral;
 import dev.ithundxr.createnumismatics.content.bank.CardItem;
 import dev.ithundxr.createnumismatics.content.bank.IDCardItem;
+import dev.ithundxr.createnumismatics.content.depositor.AndesiteDepositorBlockEntity;
 import dev.ithundxr.createnumismatics.content.depositor.BrassDepositorBlockEntity;
 import dev.ithundxr.createnumismatics.content.vendor.VendorBlockEntity;
 import dev.ithundxr.createnumismatics.registry.NumismaticsBlockEntities;
@@ -41,6 +43,7 @@ import java.util.WeakHashMap;
 public class NumismaticsComputerCraftCompat {
 
     private static final WeakHashMap<BrassDepositorBlockEntity, BrassDepositorPeripheral> depositorPeripherals = new WeakHashMap<>();
+    private static final WeakHashMap<AndesiteDepositorBlockEntity, AndesiteDepositorPeripheral> andesiteDepositorPeripherals = new WeakHashMap<>();
     private static final WeakHashMap<VendorBlockEntity, VendorPeripheral> vendorPeripherals = new WeakHashMap<>();
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -54,6 +57,12 @@ public class NumismaticsComputerCraftCompat {
             PeripheralCapability.get(),
             NumismaticsBlockEntities.BRASS_DEPOSITOR.get(),
             (be, side) -> depositorPeripherals.computeIfAbsent(be, BrassDepositorPeripheral::new)
+        );
+
+        event.registerBlockEntity(
+            PeripheralCapability.get(),
+            NumismaticsBlockEntities.ANDESITE_DEPOSITOR.get(),
+            (be, side) -> andesiteDepositorPeripherals.computeIfAbsent(be, AndesiteDepositorPeripheral::new)
         );
 
         event.registerBlockEntity(
