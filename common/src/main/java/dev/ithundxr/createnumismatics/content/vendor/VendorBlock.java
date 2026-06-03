@@ -120,18 +120,21 @@ public class VendorBlock extends Block implements IBE<VendorBlockEntity>, Truste
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (player.isCrouching()) {
-            if (level.isClientSide)
-                return ItemInteractionResult.SUCCESS;
-            if (isTrusted(player, level, pos)) {
-                withBlockEntityDo(level, pos,
-                        be -> Utils.openScreen((ServerPlayer) player, be, be::sendToMenu));
-            }
-            return ItemInteractionResult.SUCCESS;
-        }
-
         if (level.isClientSide)
             return ItemInteractionResult.SUCCESS;
+
+        // Trusted players (e.g. the owner) open the config menu on a normal right-click and
+        // perform transactions on shift-right-click. Everyone else transacts on right-click;
+        // a non-trusted shift-right-click is a no-op.
+        if (isTrusted(player, level, pos)) {
+            if (!player.isCrouching()) {
+                withBlockEntityDo(level, pos,
+                        be -> Utils.openScreen((ServerPlayer) player, be, be::sendToMenu));
+                return ItemInteractionResult.SUCCESS;
+            }
+        } else if (player.isCrouching()) {
+            return ItemInteractionResult.SUCCESS;
+        }
 
         /*SliderStylePriceBehaviour priceBehaviour = BlockEntityBehaviour.get(level, pos, SliderStylePriceBehaviour.TYPE);
         if (priceBehaviour != null && priceBehaviour.deduct(player, hand)) {
